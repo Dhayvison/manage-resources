@@ -2,59 +2,40 @@
 
 @section('body')
 
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-end mb-3">
   <a href="/types/add" class="btn btn-primary" type="button">
     @!icon({name: 'add', title: 'Add'}) 
   </a>
 </div>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-borderless table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Type</th>
+        <th scope="col">Dependent</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Updated At</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each((type) in resourceTypes)
+        <tr>
+          <th scope="row">{{type.id}}</th>
+          <td>{{type.name}}</td>
+          <td>
+            @if(type.isDependent)
+              <span class="badge bg-success">YES</span>
+            @else  
+              <span class="badge bg-danger">NO</span>
+            @end
+          </td>
+          <td>{{{type.createdAt.toLocaleString()}}}</td>
+          <td>{{type.updatedAt.toLocaleString()}}</td>
+        </tr>
+      @end
+    </tbody>
+  </table>
+</div>
 
-<p>
-  <h4>Lorem ipsum dolor sit, amet animi necessitatibus ratione id tempore.</h4>
-  <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus qui autem nobis impedit incidunt aperiam quis sunt cupiditate magnam maxime numquam quia, fugit enim, ipsum consectetur culpa sit beatae officia.</span>
-  <span>Distinctio cupiditate repellendus, optio voluptatem perspiciatis voluptates quia non! Ea architecto voluptatem nisi, saepe reprehenderit repellat. Quod, distinctio magni eos aperiam dolore natus maxime quo amet, praesentium perferendis, voluptatum suscipit!</span>
-  <span>Maiores, perferendis quae cupiditate nulla adipisci totam fuga temporibus eos ipsum sunt iste vero quisquam harum sed illo consequuntur eaque enim placeat facilis hic officiis cumque veritatis perspiciatis labore? Quo!</span>
-  <span>Earum unde soluta accusantium quis voluptatem laboriosam laborum amet dolore ab quaerat quasi, quisquam rerum impedit voluptates nam adipisci blanditiis recusandae fugiat, corrupti modi suscipit quibusdam omnis sint! Est, dicta?</span>
-  <span>Laboriosam ipsum qui inventore iure delectus labore amet? Tempore esse iure, corrupti quasi dignissimos inventore totam exercitationem, deleniti quos assumenda atque! Aut dolores excepturi repellat fugit rem, ea esse atque!</span>
-</p>
-<p>
-  <h4>Lorem, amet culpa nesciunt tenetur? Vitae animi necessitatibus.</h4>
-  <span>Rerum dolorum officiis, aliquid voluptatibus voluptatum esse libero ducimus accusamus minus sapiente tenetur neque maxime aspernatur cumque beatae corrupti dolorem, culpa nulla harum dolore modi possimus aut eveniet qui! Veniam.</span>
-  <span>Porro libero facilis blanditiis eos iure earum commodi placeat nesciunt ea provident, laboriosam harum, deserunt dolores fugiat suscipit! Ab modi rem reprehenderit fugiat aspernatur accusamus quod sint nulla et quis?</span>
-  <span>Dignissimos ducimus cum quaerat corrupti a, atque praesentium laborum neque ullam eligendi distinctio ad amet numquam animi ex, ipsam consectetur temporibus assumenda, illo reprehenderit aut! Dolores cupiditate vel mollitia a!</span>
-  <span>Nostrum repellat, quasi eligendi rem earum id doloribus reiciendis laboriosam iusto sequi sit sed perferendis soluta iste expedita recusandae mollitia molestiae! Corporis voluptatibus nam nemo at cumque dolorum consequuntur asperiores.</span>
-  <span>Aperiam earum incidunt quidem itaque officia quia laborum id dignissimos facere cum eius, quas a, illum vero sint voluptatum debitis ullam sunt. Commodi veritatis, cum tenetur facilis cumque reprehenderit similique.</span>
-</p>
-
-<p>
-  <h4>Lorem ipsum dolor sit, amet animi necessitatibus ratione id tempore.</h4>
-  <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus qui autem nobis impedit incidunt aperiam quis sunt cupiditate magnam maxime numquam quia, fugit enim, ipsum consectetur culpa sit beatae officia.</span>
-  <span>Distinctio cupiditate repellendus, optio voluptatem perspiciatis voluptates quia non! Ea architecto voluptatem nisi, saepe reprehenderit repellat. Quod, distinctio magni eos aperiam dolore natus maxime quo amet, praesentium perferendis, voluptatum suscipit!</span>
-  <span>Maiores, perferendis quae cupiditate nulla adipisci totam fuga temporibus eos ipsum sunt iste vero quisquam harum sed illo consequuntur eaque enim placeat facilis hic officiis cumque veritatis perspiciatis labore? Quo!</span>
-  <span>Earum unde soluta accusantium quis voluptatem laboriosam laborum amet dolore ab quaerat quasi, quisquam rerum impedit voluptates nam adipisci blanditiis recusandae fugiat, corrupti modi suscipit quibusdam omnis sint! Est, dicta?</span>
-  <span>Laboriosam ipsum qui inventore iure delectus labore amet? Tempore esse iure, corrupti quasi dignissimos inventore totam exercitationem, deleniti quos assumenda atque! Aut dolores excepturi repellat fugit rem, ea esse atque!</span>
-</p>
-<p>
-  <h4>Lorem, amet culpa nesciunt tenetur? Vitae animi necessitatibus.</h4>
-  <span>Rerum dolorum officiis, aliquid voluptatibus voluptatum esse libero ducimus accusamus minus sapiente tenetur neque maxime aspernatur cumque beatae corrupti dolorem, culpa nulla harum dolore modi possimus aut eveniet qui! Veniam.</span>
-  <span>Porro libero facilis blanditiis eos iure earum commodi placeat nesciunt ea provident, laboriosam harum, deserunt dolores fugiat suscipit! Ab modi rem reprehenderit fugiat aspernatur accusamus quod sint nulla et quis?</span>
-  <span>Dignissimos ducimus cum quaerat corrupti a, atque praesentium laborum neque ullam eligendi distinctio ad amet numquam animi ex, ipsam consectetur temporibus assumenda, illo reprehenderit aut! Dolores cupiditate vel mollitia a!</span>
-  <span>Nostrum repellat, quasi eligendi rem earum id doloribus reiciendis laboriosam iusto sequi sit sed perferendis soluta iste expedita recusandae mollitia molestiae! Corporis voluptatibus nam nemo at cumque dolorum consequuntur asperiores.</span>
-  <span>Aperiam earum incidunt quidem itaque officia quia laborum id dignissimos facere cum eius, quas a, illum vero sint voluptatum debitis ullam sunt. Commodi veritatis, cum tenetur facilis cumque reprehenderit similique.</span>
-</p>
-<p>
-  <h4>Lorem ipsum dolor sit, amet animi necessitatibus ratione id tempore.</h4>
-  <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus qui autem nobis impedit incidunt aperiam quis sunt cupiditate magnam maxime numquam quia, fugit enim, ipsum consectetur culpa sit beatae officia.</span>
-  <span>Distinctio cupiditate repellendus, optio voluptatem perspiciatis voluptates quia non! Ea architecto voluptatem nisi, saepe reprehenderit repellat. Quod, distinctio magni eos aperiam dolore natus maxime quo amet, praesentium perferendis, voluptatum suscipit!</span>
-  <span>Maiores, perferendis quae cupiditate nulla adipisci totam fuga temporibus eos ipsum sunt iste vero quisquam harum sed illo consequuntur eaque enim placeat facilis hic officiis cumque veritatis perspiciatis labore? Quo!</span>
-  <span>Earum unde soluta accusantium quis voluptatem laboriosam laborum amet dolore ab quaerat quasi, quisquam rerum impedit voluptates nam adipisci blanditiis recusandae fugiat, corrupti modi suscipit quibusdam omnis sint! Est, dicta?</span>
-  <span>Laboriosam ipsum qui inventore iure delectus labore amet? Tempore esse iure, corrupti quasi dignissimos inventore totam exercitationem, deleniti quos assumenda atque! Aut dolores excepturi repellat fugit rem, ea esse atque!</span>
-</p>
-<p>
-  <h4>Lorem, amet culpa nesciunt tenetur? Vitae animi necessitatibus.</h4>
-  <span>Rerum dolorum officiis, aliquid voluptatibus voluptatum esse libero ducimus accusamus minus sapiente tenetur neque maxime aspernatur cumque beatae corrupti dolorem, culpa nulla harum dolore modi possimus aut eveniet qui! Veniam.</span>
-  <span>Porro libero facilis blanditiis eos iure earum commodi placeat nesciunt ea provident, laboriosam harum, deserunt dolores fugiat suscipit! Ab modi rem reprehenderit fugiat aspernatur accusamus quod sint nulla et quis?</span>
-  <span>Dignissimos ducimus cum quaerat corrupti a, atque praesentium laborum neque ullam eligendi distinctio ad amet numquam animi ex, ipsam consectetur temporibus assumenda, illo reprehenderit aut! Dolores cupiditate vel mollitia a!</span>
-  <span>Nostrum repellat, quasi eligendi rem earum id doloribus reiciendis laboriosam iusto sequi sit sed perferendis soluta iste expedita recusandae mollitia molestiae! Corporis voluptatibus nam nemo at cumque dolorum consequuntur asperiores.</span>
-  <span>Aperiam earum incidunt quidem itaque officia quia laborum id dignissimos facere cum eius, quas a, illum vero sint voluptatum debitis ullam sunt. Commodi veritatis, cum tenetur facilis cumque reprehenderit similique.</span>
-</p>
 @end

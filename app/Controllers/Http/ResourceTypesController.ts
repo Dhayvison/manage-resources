@@ -9,6 +9,7 @@ export default class ResourceTypesController {
       title: 'Resource Types',
       breadcrumb: [{ text: 'Home' }, { text: 'Manage' }, { text: 'Resource Types' }],
       icon: 'category',
+      resourceTypes: await ResourceType.all(),
     })
   }
 
