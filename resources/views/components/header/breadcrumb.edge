@@ -1,0 +1,14 @@
+<nav class="bg-light bg-gradient border-top" aria-label="breadcrumb">
+  <ul class="breadcrumb px-4 py-2">
+    @each(breadcrumbItem in breadcrumb)
+      <li class="breadcrumb-item">
+        @if(breadcrumbItem.route)
+          <a href={{breadcrumbItem.route}}>{{breadcrumbItem.text}}</a>
+        @else
+          <span>{{breadcrumbItem.text}}</span>
+        @end
+        
+      </li>
+    @end
+  </ul>
+</nav>

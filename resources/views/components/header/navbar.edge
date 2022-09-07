@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light pt-2">
+  <div class="container-xl">
+    <a class="navbar-brand text-warning" href="/">
+      @!icon({name: 'account_tree'})
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+      @!icon({name: 'menu'})
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <ul class="navbar-nav gap-4">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Manage
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/types/index">Resource Types</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
