@@ -1,0 +1,25 @@
+@layout('layouts/main')
+
+
+@section('body')
+<form 
+  action="{{ route('ResourceTypesController.store') }}"
+  method="POST"
+>
+  <div class="mb-3">
+    @!form.input({type: 'text', name: 'name', id: 'type-input', label: 'Resource Type', message: flashMessages.get('errors.name') && 'This field is required'})
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" name="isDependent" class="form-check-input" id="dependent" value="1">
+    <label class="form-check-label" for="dependent" >Is dependent</label>
+    <div id="dependent-helper" class="form-text">
+      Check this option to indicate that this resource cannot be registered without a parent.
+    </div>
+  </div>
+  <div class="d-flex justify-content-end align-itens-center">
+    <button type="submit" class="btn btn-lg btn-primary"> 
+      Save
+    </button>
+  </div>
+</form>
+@end

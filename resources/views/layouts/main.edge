@@ -18,7 +18,7 @@
       @!header.breadcrumb({breadcrumb})
     @end
 
-    @if(alert)
+    @each(alert in flashMessages.get('alerts'))
       @!alert({alert})
     @end
     
