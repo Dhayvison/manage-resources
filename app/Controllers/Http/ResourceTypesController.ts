@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ResourceType from 'App/Models/ResourceType'
-import { schema } from '@ioc:Adonis/Core/Validator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import AlertMessage from 'App/Models/AlertMessage'
 
 export default class ResourceTypesController {
@@ -28,10 +28,16 @@ export default class ResourceTypesController {
 
   public async store({ request, response, session }: HttpContextContract) {
     const newResourceTypeSchema = schema.create({
-      name: schema.string(),
+      name: schema.string({}, [rules.unique({ table: ResourceType.table, column: 'name' })]),
     })
 
-    await request.validate({ schema: newResourceTypeSchema })
+    await request.validate({
+      schema: newResourceTypeSchema,
+      messages: {
+        'required': 'This field is required',
+        'name.unique': 'This name has already been registered',
+      },
+    })
 
     const resourceType = await ResourceType.create(request.only(['name', 'isDependent']))
 

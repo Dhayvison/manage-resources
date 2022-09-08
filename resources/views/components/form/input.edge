@@ -5,15 +5,11 @@
     name="{{name}}" 
     class="
       form-control 
-      @if(message) 
-        is-invalid
-      @end
+      {{ error && 'is-invalid'}}
     " 
     id="{{id}}"
   >
   <div class="invalid-feedback">
-    @if(message) 
-      {{message}}
-    @end
+    {{ error && sentenceCase(error)}}
   </div>
 </div>

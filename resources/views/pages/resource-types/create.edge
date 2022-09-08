@@ -7,17 +7,26 @@
   method="POST"
 >
   <div class="mb-3">
-    @!form.input({type: 'text', name: 'name', id: 'type-input', label: 'Resource Type', message: flashMessages.get('errors.name') && 'This field is required'})
+    @!form.input({
+      type: 'text', 
+      name: 'name', 
+      id: 'type-input', 
+      label: 'Resource Type', 
+      error: flashMessages.get('errors.name')?.shift(),
+    })
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" name="isDependent" class="form-check-input" id="dependent" value="1">
-    <label class="form-check-label" for="dependent" >Is dependent</label>
-    <div id="dependent-helper" class="form-text">
-      Check this option to indicate that this resource cannot be registered without a parent.
-    </div>
+  <div class="mb-3">
+    @!form.checkbox({
+      name: 'isDependent', 
+      id: 'dependent-input', 
+      label: 'Is dependent', 
+      helper: 'Check this option to indicate that this type of resource cannot be registered without a parent',
+      error: flashMessages.get('errors.isDependent')?.shift(),
+    })
   </div>
-  <div class="d-flex justify-content-end align-itens-center">
-    <button type="submit" class="btn btn-lg btn-primary"> 
+  <div class="d-flex justify-content-end gap-4">
+    <a href="{{ route('ResourceTypesController.index') }}" class="btn btn-light">Cancel</a>
+    <button type="submit" class="btn btn-primary px-5"> 
       Save
     </button>
   </div>

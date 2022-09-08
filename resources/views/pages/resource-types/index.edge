@@ -3,7 +3,7 @@
 @section('body')
 
 <div class="d-flex justify-content-end mb-3">
-  <a href="/types/add" class="btn btn-primary" type="button">
+  <a href="{{ route('ResourceTypesController.create') }}" class="btn btn-primary" type="button">
     @!icon({name: 'add', title: 'Add'}) 
   </a>
 </div>

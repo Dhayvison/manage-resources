@@ -22,5 +22,5 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'HomeController.home')
 Route.get('/types/index', 'ResourceTypesController.index')
-Route.get('/types/add', 'ResourceTypesController.create')
-Route.post('/types/save', 'ResourceTypesController.store')
+Route.get('/types/create', 'ResourceTypesController.create')
+Route.post('/types/store', 'ResourceTypesController.store')
