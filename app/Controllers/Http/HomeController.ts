@@ -6,11 +6,6 @@ export default class HomeController {
       title: 'Home',
       breadcrumb: [{ text: 'Home' }],
       icon: 'home',
-      alert: {
-        type: 'success',
-        title: 'Welcome aboard!',
-        description: 'It is a pleasure to have you join our team. Let us create magic',
-      },
     })
   }
 }
