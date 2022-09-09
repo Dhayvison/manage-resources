@@ -7,35 +7,37 @@
     @!icon({name: 'add', title: 'Add'}) 
   </a>
 </div>
-<div class="table-responsive">
-  <table class="table table-striped table-hover table-borderless table">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Type</th>
-        <th scope="col">Dependent</th>
-        <th scope="col">Created At</th>
-        <th scope="col">Updated At</th>
-      </tr>
-    </thead>
-    <tbody>
-      @each((type) in resourceTypes)
-        <tr>
-          <th scope="row">{{type.id}}</th>
-          <td>{{type.name}}</td>
-          <td>
-            @if(type.isDependent)
-              <span class="badge bg-success">YES</span>
-            @else  
-              <span class="badge bg-danger">NO</span>
-            @end
-          </td>
-          <td>{{{type.createdAt.toLocaleString()}}}</td>
-          <td>{{type.updatedAt.toLocaleString()}}</td>
-        </tr>
-      @end
-    </tbody>
-  </table>
-</div>
 
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+  @each((type) in resourceTypes)
+    <div class="col mb-4">
+      <div class="card position-relative">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark">
+          {{type.id}}
+          <span class="visually-hidden">id</span>
+        </span>
+        <div class="card-body">
+          <h5 class="card-title">{{type.name}}</h5>
+          <p class="card-text">
+            @if(type.isDependent)
+              <span class="badge rounded-pill bg-warning">Dependent</span>
+            @else  
+              <span class="badge rounded-pill bg-info">No dependent</span>
+            @end
+            <hr>
+            <small class="d-block">
+              Created at: {{type.createdAt.toLocaleString()}}
+            </small>
+            <small class="d-block">
+              Update at: {{type.updatedAt.toLocaleString()}}
+            </small>
+          </p>
+          <a href="#" class="text-muted stretched-link">
+            @!icon({name: 'visibility', title: 'View'})
+          </a>
+        </div>
+      </div>
+    </div>
+  @end
+</div>
 @end
