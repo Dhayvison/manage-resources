@@ -1,0 +1,37 @@
+@layout('layouts/main')
+
+
+@section('body')
+<div class="card text-center">
+  <div class="card-body">
+    <div class="card-title position-relative">
+      <h6 class="lead position-absolute top-0 start-0">{{resourceType.id}}</h6>
+      <h1 class="display-4">
+        {{resourceType.name}}
+      </h1>
+      @if(resourceType.isDependent)
+        <span class="badge rounded-pill bg-warning">Dependent</span>
+      @else  
+        <span class="badge rounded-pill bg-info">No dependent</span>
+      @end
+      
+    </div>
+    <hr>
+    <p class="card-text">
+      <h6 class="lead">
+        Created at: 
+        <strong>
+          {{resourceType.createdAt.toLocaleString()}}
+        </strong>
+      </h6>
+      <h6 class="lead">
+        Updated at: 
+        <strong>
+          {{resourceType.updatedAt.toLocaleString()}}
+        </strong>
+      </h6>
+    </p>
+  </div>
+</div>
+
+@end

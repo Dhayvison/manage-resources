@@ -26,6 +26,23 @@ export default class ResourceTypesController {
     })
   }
 
+  public async view({ params, view }: HttpContextContract) {
+    const resourceType = await ResourceType.findByOrFail('id', params.id)
+
+    return view.render('pages/resource-types/view', {
+      title: 'View',
+      breadcrumb: [
+        { text: 'Home' },
+        { text: 'Manage' },
+        { text: 'Resource Types', route: '/types/index' },
+        { text: 'Details' },
+        { text: params.id },
+      ],
+      icon: 'visibility',
+      resourceType,
+    })
+  }
+
   public async store({ request, response, session }: HttpContextContract) {
     const newResourceTypeSchema = schema.create({
       name: schema.string({}, [rules.unique({ table: ResourceType.table, column: 'name' })]),
