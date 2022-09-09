@@ -3,7 +3,7 @@
     @each(breadcrumbItem in breadcrumb)
       <li class="breadcrumb-item">
         @if(breadcrumbItem.route)
-          <a href={{breadcrumbItem.route}}>{{breadcrumbItem.text}}</a>
+          <a class="text-decoration-none" href={{breadcrumbItem.route}}>{{breadcrumbItem.text}}</a>
         @else
           <span>{{breadcrumbItem.text}}</span>
         @end
