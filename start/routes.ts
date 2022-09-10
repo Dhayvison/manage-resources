@@ -21,10 +21,23 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'HomeController.home')
-Route.get('/types/index', 'ResourceTypesController.index')
-Route.get('/types/create', 'ResourceTypesController.create')
-Route.post('/types/store', 'ResourceTypesController.store')
-Route.get('/types/view/:id', 'ResourceTypesController.view')
-Route.get('/types/edit/:id', 'ResourceTypesController.edit')
-Route.post('/types/update/:id', 'ResourceTypesController.update')
-Route.post('/types/delete/:id', 'ResourceTypesController.delete')
+
+Route.group(() => {
+  Route.get('/index', 'ResourceTypesController.index')
+  Route.get('/view/:id', 'ResourceTypesController.view')
+  Route.get('/edit/:id', 'ResourceTypesController.edit')
+  Route.get('/create', 'ResourceTypesController.create')
+  Route.post('/store', 'ResourceTypesController.store')
+  Route.post('/update/:id', 'ResourceTypesController.update')
+  Route.post('/delete/:id', 'ResourceTypesController.delete')
+}).prefix('/types')
+
+Route.group(() => {
+  Route.get('/index', 'ResourceController.index')
+  Route.get('/view/:id', 'ResourceController.view')
+  Route.get('/edit/:id', 'ResourceController.edit')
+  Route.get('/create', 'ResourceController.create')
+  Route.post('/store', 'ResourceController.store')
+  Route.post('/update/:id', 'ResourceController.update')
+  Route.post('/delete/:id', 'ResourceController.delete')
+}).prefix('/resources')
