@@ -28,6 +28,7 @@ export default class ResourceController {
 
   public async view({ params, view }: HttpContextContract) {
     const resource = await Resource.findOrFail(params.id)
+    await resource.load('resourceType')
 
     return view.render('pages/resources/view', {
       title: 'View',
