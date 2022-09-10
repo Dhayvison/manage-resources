@@ -1,6 +1,6 @@
 <div class="form-check">
   <input 
-  class="
+    class="
       form-check-input
       {{ error && 'is-invalid'}}
     " 
@@ -8,6 +8,7 @@
     name="{{name}}" 
     id="{{id}}" 
     value="1"
+    {{checked && 'checked'}}
   >
   <label class="form-check-label" for="{{id}}">{{label}}</label>
   <div class="invalid-feedback">
