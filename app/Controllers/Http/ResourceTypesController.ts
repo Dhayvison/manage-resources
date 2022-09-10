@@ -43,6 +43,23 @@ export default class ResourceTypesController {
     })
   }
 
+  public async edit({ params, view }: HttpContextContract) {
+    const resourceType = await ResourceType.findByOrFail('id', params.id)
+
+    return view.render('pages/resource-types/edit', {
+      title: 'Edit',
+      breadcrumb: [
+        { text: 'Home' },
+        { text: 'Manage' },
+        { text: 'Resource Types', route: '/types/index' },
+        { text: 'Update' },
+        { text: params.id },
+      ],
+      icon: 'edit',
+      resourceType,
+    })
+  }
+
   public async store({ request, response, session }: HttpContextContract) {
     const newResourceTypeSchema = schema.create({
       name: schema.string({}, [rules.unique({ table: ResourceType.table, column: 'name' })]),
@@ -69,5 +86,39 @@ export default class ResourceTypesController {
     }
 
     response.redirect().toPath('/types/index')
+  }
+
+  public async update({ request, response, params, session }: HttpContextContract) {
+    const newResourceTypeSchema = schema.create({
+      name: schema.string({}, [
+        rules.unique({ table: ResourceType.table, column: 'name', whereNot: { id: params.id } }),
+      ]),
+    })
+
+    await request.validate({
+      schema: newResourceTypeSchema,
+      messages: {
+        required: 'This field is required',
+      },
+    })
+
+    const resourceType = await ResourceType.findByOrFail('id', params.id)
+
+    resourceType.merge(request.only(['name', 'isDependent']))
+    resourceType.isDependent = request.input('isDependent', null)
+
+    await resourceType.save()
+
+    if (resourceType) {
+      session.flash('alerts', [
+        new AlertMessage(
+          'success',
+          'Success!',
+          `The ${resourceType.name} resource type has been updated`
+        ),
+      ])
+    }
+
+    response.redirect().toPath(`/types/view/${resourceType.id}`)
   }
 }
