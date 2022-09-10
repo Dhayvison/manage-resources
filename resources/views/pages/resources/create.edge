@@ -1,0 +1,59 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="d-flex justify-content-end mb-3">
+  <a href="{{ route('ResourceController.index') }}" class="btn" type="button">
+    @!icon({name: 'arrow_back', title: 'Back'}) 
+  </a>
+</div>
+<form 
+  action="{{ route('ResourceController.store') }}"
+  method="POST"
+>
+  <div class="mb-3">
+    @!form.input({
+      type: 'text', 
+      name: 'name', 
+      id: 'name-input', 
+      label: 'Resource name', 
+      error: flashMessages.get('errors.name')?.shift(),
+    })
+  </div>
+
+  <div class="mb-3">
+    @!form.input({
+      type: 'number', 
+      name: 'quantity', 
+      id: 'quantity-input', 
+      label: 'Quantity', 
+      error: flashMessages.get('errors.quantity')?.shift(),
+    })
+  </div>
+
+  <div class="mb-3">
+    @!form.input({
+      type: 'number', 
+      name: 'resourceTypeId', 
+      id: 'resourceTypeId-input', 
+      label: 'Type', 
+      error: flashMessages.get('errors.resourceTypeId')?.shift(),
+    })
+  </div>
+
+  <div class="mb-3">
+    @!form.input({
+      type: 'number', 
+      name: 'resourceParentId', 
+      id: 'resourceParentId-input', 
+      label: 'Parent Resource', 
+      error: flashMessages.get('errors.resourceParentId')?.shift(),
+    })
+  </div>
+
+  <div class="d-flex justify-content-end gap-4">
+    <button type="submit" class="btn btn-primary px-5"> 
+      Save
+    </button>
+  </div>
+</form>
+@end
