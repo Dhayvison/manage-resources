@@ -9,6 +9,9 @@
   <a href="{{ route('ResourceTypesController.edit', {id: resourceType.id}) }}" class="btn" type="button">
     @!icon({name: 'edit', title: 'Edit'}) 
   </a>
+  <button href="{{ route('ResourceTypesController.edit', {id: resourceType.id}) }}" class="btn text-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete-modal">
+    @!icon({name: 'delete', title: 'Delete'}) 
+  </button>
 </div>
 <div class="card bg-light text-center shadow-sm">
   <div class="card-body">
@@ -39,6 +42,35 @@
         </strong>
       </h6>
     </p>
+  </div>
+</div>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="delete-modal-title">Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form 
+        action="{{ route('ResourceTypesController.delete', {id: resourceType.id})}}"
+        method="POST"
+      >
+        <div class="modal-body">
+          <p class="lead">
+            Do you want to delete the resource type
+            <strong>
+              {{resourceType.name}}
+            </strong>
+            ?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-danger">Yes, delete</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

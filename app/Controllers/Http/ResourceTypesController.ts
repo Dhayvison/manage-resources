@@ -121,4 +121,23 @@ export default class ResourceTypesController {
 
     response.redirect().toPath(`/types/view/${resourceType.id}`)
   }
+
+  public async delete({ params, session, response }: HttpContextContract) {
+    const resourceType = await ResourceType.findOrFail(params.id)
+    await resourceType.delete()
+
+    if (resourceType.$isDeleted) {
+      session.flash('alerts', [
+        new AlertMessage(
+          'warning',
+          'Done!',
+          `The ${resourceType.name} resource type has been deleted`
+        ),
+      ])
+    } else {
+      session.flash('alerts', [new AlertMessage('danger', 'Error:', 'Unable to delete record')])
+    }
+
+    response.redirect().toPath('/types/index')
+  }
 }
