@@ -1,9 +1,12 @@
 <nav class="bg-light bg-gradient border-top shadow-sm" aria-label="breadcrumb">
   <ul class="breadcrumb px-4 py-2">
+    <li class="breadcrumb-item">
+      <a class="text-decoration-none text-warning fw-bold" href={{ route('HomeController.home')}}>Home</a>
+    </li>
     @each(breadcrumbItem in breadcrumb)
       <li class="breadcrumb-item">
         @if(breadcrumbItem.route)
-          <a class="text-decoration-none" href={{breadcrumbItem.route}}>{{breadcrumbItem.text}}</a>
+          <a class="text-decoration-none text-warning" href={{breadcrumbItem.route}}>{{breadcrumbItem.text}}</a>
         @else
           <span>{{breadcrumbItem.text}}</span>
         @end

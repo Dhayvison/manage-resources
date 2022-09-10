@@ -7,7 +7,7 @@ export default class ResourceTypesController {
   public async index({ view }: HttpContextContract) {
     return view.render('pages/resource-types/index', {
       title: 'Resource Types',
-      breadcrumb: [{ text: 'Home' }, { text: 'Manage' }, { text: 'Resource Types' }],
+      breadcrumb: [{ text: 'Manage' }, { text: 'Resource Types' }],
       icon: 'category',
       resourceTypes: await ResourceType.all(),
     })
@@ -17,7 +17,6 @@ export default class ResourceTypesController {
     return view.render('pages/resource-types/create', {
       title: 'Add Resource Type',
       breadcrumb: [
-        { text: 'Home' },
         { text: 'Manage' },
         { text: 'Resource Types', route: '/types/index' },
         { text: 'Add' },
@@ -32,7 +31,6 @@ export default class ResourceTypesController {
     return view.render('pages/resource-types/view', {
       title: 'View',
       breadcrumb: [
-        { text: 'Home' },
         { text: 'Manage' },
         { text: 'Resource Types', route: '/types/index' },
         { text: 'Details' },
@@ -49,7 +47,6 @@ export default class ResourceTypesController {
     return view.render('pages/resource-types/edit', {
       title: 'Edit',
       breadcrumb: [
-        { text: 'Home' },
         { text: 'Manage' },
         { text: 'Resource Types', route: '/types/index' },
         { text: 'Update' },

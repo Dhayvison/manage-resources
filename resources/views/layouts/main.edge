@@ -15,9 +15,7 @@
   @!header.navbar()
 
   <div class="container-xl">
-    @if(breadcrumb)
-      @!header.breadcrumb({breadcrumb})
-    @end
+    @!header.breadcrumb({breadcrumb})
 
     @each(alert in flashMessages.get('alerts'))
       @!alert({alert})

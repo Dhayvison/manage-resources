@@ -8,7 +8,6 @@ export default class HomeController {
 
     return view.render('pages/home/index', {
       title: 'Home',
-      breadcrumb: [{ text: 'Home' }],
       icon: 'home',
       charts: {
         dependencies: new DependenciesChart(resourceTypes),
