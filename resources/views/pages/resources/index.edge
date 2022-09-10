@@ -1,0 +1,35 @@
+@layout('layouts/main')
+
+@section('body')
+
+<div class="d-flex justify-content-end mb-3">
+  <a href="{{ route('ResourceController.create') }}" class="btn" type="button">
+    @!icon({name: 'add', title: 'Add'}) 
+  </a>
+</div>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+  @each((resource) in resources)
+    <div class="col mb-4">
+      <div class="card position-relative bg-light shadow-sm">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark">
+          {{resource.id}}
+          <span class="visually-hidden">resource number</span>
+        </span>
+        <div class="card-body">
+          <h5 class="card-title">{{resource.name}}</h5>
+          <p class="card-text">
+            <hr>
+            <small class="text-muted d-block">
+              Created at: {{resource.createdAt.toLocaleString()}}
+            </small>
+          </p>
+          <a href="{{ route('ResourceController.view', {id: resource.id}) }}" class="text-muted stretched-link">
+            @!icon({name: 'visibility', title: 'View'})
+          </a>
+        </div>
+      </div>
+    </div>
+  @end
+</div>
+@end
