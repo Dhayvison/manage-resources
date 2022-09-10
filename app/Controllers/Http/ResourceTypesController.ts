@@ -21,7 +21,7 @@ export default class ResourceTypesController {
         { text: 'Resource Types', route: '/types/index' },
         { text: 'Add' },
       ],
-      icon: 'category',
+      icon: 'add_circle',
     })
   }
 
