@@ -6,11 +6,11 @@
   <a href="{{ route('ResourceTypesController.index') }}" class="btn" type="button">
     @!icon({name: 'arrow_back', title: 'Back'}) 
   </a>
-  <a href="{{ route('ResourceTypesController.index') }}" class="btn" type="button">
+  <a href="{{ route('ResourceTypesController.edit', {id: resourceType.id}) }}" class="btn" type="button">
     @!icon({name: 'edit', title: 'Edit'}) 
   </a>
 </div>
-<div class="card text-center">
+<div class="card bg-light text-center shadow-sm">
   <div class="card-body">
     <div class="card-title position-relative">
       <h6 class="lead position-absolute top-0 start-0">{{resourceType.id}}</h6>
