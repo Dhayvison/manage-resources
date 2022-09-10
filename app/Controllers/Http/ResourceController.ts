@@ -72,6 +72,9 @@ export default class ResourceController {
       schema: newResourceSchema,
       messages: {
         required: 'This field is required',
+        unsigned: 'This field must be greater than zero',
+        range: 'The value of this field must be between {{ options.start }} and {{ options.stop }}',
+        exists: 'Reference not found',
       },
     })
 
