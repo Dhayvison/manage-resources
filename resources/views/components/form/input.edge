@@ -10,7 +10,7 @@
       {{ error && 'is-invalid'}}
     " 
     id="{{id}}"
-    value="{{value ?? ''}}"
+    value="{{ flashMessages.get(name) ?? value ?? ''}}"
   >
   <div class="invalid-feedback">
     {{ error && sentenceCase(error)}}
