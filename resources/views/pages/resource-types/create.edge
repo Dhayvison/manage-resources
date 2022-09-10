@@ -2,6 +2,11 @@
 
 
 @section('body')
+<div class="d-flex justify-content-end mb-3">
+  <a href="{{ route('ResourceTypesController.index') }}" class="btn" type="button">
+    @!icon({name: 'arrow_back', title: 'Back'}) 
+  </a>
+</div>
 <form 
   action="{{ route('ResourceTypesController.store') }}"
   method="POST"
@@ -25,7 +30,6 @@
     })
   </div>
   <div class="d-flex justify-content-end gap-4">
-    <a href="{{ route('ResourceTypesController.index') }}" class="btn btn-light">Cancel</a>
     <button type="submit" class="btn btn-primary px-5"> 
       Save
     </button>
