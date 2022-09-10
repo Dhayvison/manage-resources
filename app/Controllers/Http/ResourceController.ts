@@ -10,7 +10,7 @@ export default class ResourceController {
       title: 'Resources',
       breadcrumb: [{ text: 'Manage' }, { text: 'Resource' }],
       icon: 'construction',
-      resourceTypes: await Resource.all(),
+      resources: await Resource.all(),
     })
   }
 
@@ -43,7 +43,7 @@ export default class ResourceController {
   }
 
   public async edit({ params, view }: HttpContextContract) {
-    const resourceType = await Resource.findOrFail(params.id)
+    const resource = await Resource.findOrFail(params.id)
 
     return view.render('pages/resources/edit', {
       title: 'Edit',
@@ -54,7 +54,7 @@ export default class ResourceController {
         { text: params.id },
       ],
       icon: 'edit',
-      resourceType,
+      resource,
     })
   }
 
@@ -63,7 +63,9 @@ export default class ResourceController {
       name: schema.string(),
       quantity: schema.number([rules.unsigned(), rules.range(1, Number.MAX_SAFE_INTEGER)]),
       resourceTypeId: schema.number([rules.exists({ table: ResourceType.table, column: 'id' })]),
-      resourceParentId: schema.number([rules.exists({ table: Resource.table, column: 'id' })]),
+      resourceParentId: schema.number.optional([
+        rules.exists({ table: Resource.table, column: 'id' }),
+      ]),
     })
 
     await request.validate({
@@ -121,7 +123,7 @@ export default class ResourceController {
   }
 
   public async delete({ params, session, response }: HttpContextContract) {
-    const resource = await ResourceType.findOrFail(params.id)
+    const resource = await Resource.findOrFail(params.id)
     await resource.delete()
 
     if (resource.$isDeleted) {
