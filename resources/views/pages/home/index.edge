@@ -1,0 +1,11 @@
+@layout('layouts/main')
+
+@section('body')
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+  <div class="col">
+    @!home.dependencies({dependencies: charts.dependencies})
+  </div>
+</div>
+
+@end

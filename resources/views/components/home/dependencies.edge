@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">
+      Dependent resource types
+    </h5>
+    <hr>
+    <div class="card-text">
+      <canvas id="dependencies-chart" width="200" height="200"></canvas>
+    </div>
+    <hr>
+    <p class="text-center text-muted">
+      Quantity and proportion between dependent and non-dependent resource types
+    </p>
+  </div>
+</div>
+
+<script>
+  const ctx = document.getElementById('dependencies-chart').getContext('2d');
+  const dependenciesChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: [{{{dependencies.getArrayDataString(dependencies.labels)}}}],
+      datasets: [{
+        label: 'Dependencies',
+        data: [{{dependencies.getDependents().length}}, {{dependencies.getNotDependents().length}}],
+        backgroundColor: [{{{dependencies.getArrayDataString(dependencies.backgroundColor)}}}],
+      }]
+    },
+    options: {
+      plugins:{
+        legend:{
+          position: 'bottom',
+          reverse: true,
+          labels: {
+            padding: 40,
+          }
+        }
+      }
+    }
+  });
+</script>
