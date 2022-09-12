@@ -1,0 +1,22 @@
+@if(label)
+  <label for="{{id}}" class="form-label">{{label}}</label>
+@end
+<div class="input-group has-validation">
+  <select 
+    name="{{name}}"
+    id="{{id}}"
+    class="
+      form-select 
+      {{ error && 'is-invalid'}}
+    "
+    aria-label="{{label}}"
+    empty="Nenhum"
+  >
+    @each(option in options)
+      <option value="{{option.value}}">{{option.label}}</option>
+    @end
+  </select>
+  <div class="invalid-feedback">
+    {{ error && sentenceCase(error)}}
+  </div>
+</div>
