@@ -10,11 +10,13 @@ export default class ResourceController {
       title: 'Resources',
       breadcrumb: [{ text: 'Manage' }, { text: 'Resource' }],
       icon: 'construction',
-      resources: await Resource.all(),
+      resources: await Resource.query().whereNull('resource_parent_id'),
     })
   }
 
   public async create({ view }: HttpContextContract) {
+    const resourceTypes = await ResourceType.query().orderBy('name')
+    const resources = await Resource.query().orderBy('name')
     return view.render('pages/resources/create', {
       title: 'Add Resource',
       breadcrumb: [
@@ -23,6 +25,18 @@ export default class ResourceController {
         { text: 'Add' },
       ],
       icon: 'add_circle',
+      resourceTypes: resourceTypes.map(({ id, name }) => {
+        return {
+          value: id,
+          label: name,
+        }
+      }),
+      resources: resources.map(({ id, name }) => {
+        return {
+          value: id,
+          label: name,
+        }
+      }),
     })
   }
 
@@ -63,7 +77,12 @@ export default class ResourceController {
     const newResourceSchema = schema.create({
       name: schema.string(),
       quantity: schema.number([rules.unsigned(), rules.range(1, Number.MAX_SAFE_INTEGER)]),
-      resourceTypeId: schema.number([rules.exists({ table: ResourceType.table, column: 'id' })]),
+      resourceTypeId: schema.number([
+        rules.exists({
+          table: ResourceType.table,
+          column: 'id',
+        }),
+      ]),
       resourceParentId: schema.number.optional([
         rules.exists({ table: Resource.table, column: 'id' }),
       ]),
@@ -100,8 +119,15 @@ export default class ResourceController {
     const newResourceSchema = schema.create({
       name: schema.string(),
       quantity: schema.number([rules.unsigned(), rules.range(1, Number.MAX_SAFE_INTEGER)]),
-      resourceTypeId: schema.number([rules.exists({ table: ResourceType.table, column: 'id' })]),
-      resourceParentId: schema.number([rules.exists({ table: Resource.table, column: 'id' })]),
+      resourceTypeId: schema.number([
+        rules.exists({
+          table: ResourceType.table,
+          column: 'id',
+        }),
+      ]),
+      resourceParentId: schema.number.optional([
+        rules.exists({ table: Resource.table, column: 'id' }),
+      ]),
     })
 
     await request.validate({
