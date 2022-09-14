@@ -33,24 +33,24 @@
   </div>
 
   <div class="mb-3">
-    @!form.input({
-      type: 'number', 
+    @!form.select({ 
       name: 'resourceTypeId', 
       value: resource.resourceTypeId,
       id: 'resourceTypeId-input', 
       label: 'Type', 
       error: flashMessages.get('errors.resourceTypeId')?.shift(),
+      options: resourceTypes
     })
   </div>
 
   <div class="mb-3">
-    @!form.input({
-      type: 'number', 
+    @!form.select({
       name: 'resourceParentId', 
       value: resource.resourceParentId,
       id: 'resourceParentId-input', 
       label: 'Parent Resource', 
       error: flashMessages.get('errors.resourceParentId')?.shift(),
+      options: resources
     })
   </div>
   
