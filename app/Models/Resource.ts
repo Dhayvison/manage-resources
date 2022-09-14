@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import ResourceType from './ResourceType'
 
 export default class Resource extends BaseModel {
@@ -20,6 +20,11 @@ export default class Resource extends BaseModel {
 
   @belongsTo(() => ResourceType)
   public resourceType: BelongsTo<typeof ResourceType>
+
+  @hasMany(() => Resource, {
+    foreignKey: 'resourceParentId',
+  })
+  public resourceChild: HasMany<typeof Resource>
 
   @belongsTo(() => Resource)
   public resourceParent: BelongsTo<typeof Resource>

@@ -43,6 +43,9 @@ export default class ResourceController {
   public async view({ params, view }: HttpContextContract) {
     const resource = await Resource.findOrFail(params.id)
     await resource.load('resourceType')
+    await resource.load('resourceChild', (resourceQuery) => {
+      resourceQuery.preload('resourceChild').preload('resourceType')
+    })
 
     return view.render('pages/resources/view', {
       title: 'View',
@@ -59,6 +62,8 @@ export default class ResourceController {
 
   public async edit({ params, view }: HttpContextContract) {
     const resource = await Resource.findOrFail(params.id)
+    const resourceTypes = await ResourceType.query().orderBy('name')
+    const resources = await Resource.query().orderBy('name')
 
     return view.render('pages/resources/edit', {
       title: 'Edit',
@@ -70,6 +75,18 @@ export default class ResourceController {
       ],
       icon: 'edit',
       resource,
+      resourceTypes: resourceTypes.map(({ id, name }) => {
+        return {
+          value: id,
+          label: name,
+        }
+      }),
+      resources: resources.map(({ id, name }) => {
+        return {
+          value: id,
+          label: name,
+        }
+      }),
     })
   }
 
