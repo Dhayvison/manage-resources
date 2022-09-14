@@ -12,8 +12,16 @@
     aria-label="{{label}}"
     empty="Nenhum"
   >
+    <option></option>
     @each(option in options)
-      <option value="{{option.value}}">{{option.label}}</option>
+      <option 
+        @if(value === option.value)
+          selected
+        @end
+        value="{{option.value}}"
+      >
+        {{option.label}}
+      </option>
     @end
   </select>
   <div class="invalid-feedback">
