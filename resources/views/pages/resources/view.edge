@@ -13,7 +13,7 @@
     @!icon({name: 'delete', title: 'Delete'}) 
   </button>
 </div>
-<div class="card bg-light text-center shadow-sm">
+<div class="card bg-light text-center shadow-sm mb-4 mb-sm-0">
   <div class="card-body">
     <div class="card-title position-relative">
       <h6 class="lead position-absolute top-0 start-0">{{resource.id}}</h6>
@@ -48,6 +48,14 @@
       </h6>
     </p>
   </div>
+</div>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-0 flex-row-reverse justify-content-end">
+  @each(child in resource.resourceChild)
+    <div class="col mb-4 mb-sm-0">
+      @!resources.card({resource: child})
+    </div>
+  @end
 </div>
 
 <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-title" aria-hidden="true">
