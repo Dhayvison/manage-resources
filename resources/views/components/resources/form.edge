@@ -1,0 +1,54 @@
+<form 
+  action="{{action}}"
+  method="POST"
+>
+  <div class="mb-3">
+    @!form.input({
+      type: 'text', 
+      name: 'name', 
+      value: resource?.name ,
+      id: 'name-input', 
+      label: 'Resource name', 
+      error: flashMessages.get('errors.name')?.shift(),
+    })
+  </div>
+
+  <div class="mb-3">
+    @!form.input({
+      type: 'number', 
+      name: 'quantity', 
+      value: resource?.quantity,
+      id: 'quantity-input', 
+      label: 'Quantity', 
+      error: flashMessages.get('errors.quantity')?.shift(),
+    })
+  </div>
+
+  <div class="mb-3">
+    @!form.select({ 
+      name: 'resourceTypeId', 
+      value: resource?.resourceTypeId,
+      id: 'resourceTypeId-input', 
+      label: 'Type', 
+      error: flashMessages.get('errors.resourceTypeId')?.shift(),
+      options: resourceTypes
+    })
+  </div>
+
+  <div class="mb-3">
+    @!form.select({
+      name: 'resourceParentId', 
+      value: resource?.resourceParentId,
+      id: 'resourceParentId-input', 
+      label: 'Parent Resource', 
+      error: flashMessages.get('errors.resourceParentId')?.shift(),
+      options: resources
+    })
+  </div>
+
+  <div class="d-flex justify-content-end gap-4">
+    <button type="submit" class="btn btn-primary px-5"> 
+      Save
+    </button>
+  </div>
+</form>
