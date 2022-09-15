@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node ace serve --watch",
-    "build": "node ace build --production --ignore-ts-errors && cd build && yarn install --production && node ace migration:run",
+    "postinstall": "node ace migration:run",
+    "build": "node ace build --production --ignore-ts-errors",
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
