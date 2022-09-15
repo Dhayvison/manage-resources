@@ -1,2 +1,2 @@
-web: node ace build --production --ignore-ts-errors
-release: node ace migration:run
+web: node build/server.js
+release: node build/ace migration:run
