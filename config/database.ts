@@ -48,6 +48,18 @@ const databaseConfig: DatabaseConfig = {
       healthCheck: false,
       debug: false,
     },
+    sqlite: {
+      client: 'sqlite',
+      connection: {
+        filename: './database/database.sqlite',
+      },
+      migrations: {
+        naturalSort: true,
+      },
+      useNullAsDefault: true,
+      healthCheck: false,
+      debug: false,
+    },
   },
 }
 
