@@ -2,7 +2,21 @@
 
 @section('body')
 
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-between mb-3">
+  <form>
+    <div class="input-group input-group-sm">
+      <input 
+        type="search" 
+        class="form-control rounded-pill px-3" 
+        placeholder="Search by type name" 
+        name="search"
+        value="{{ search ?? ''}}"
+      >
+      <button class="btn rounded-circle" type="submit">
+        @!icon({name: 'search', title: 'Search'}) 
+      </button>
+    </div>
+  </form>
   <a href="{{ route('ResourceTypesController.create') }}" class="btn" type="button">
     @!icon({name: 'add', title: 'Add'}) 
   </a>

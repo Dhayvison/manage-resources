@@ -2,14 +2,24 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ResourceType from 'App/Models/ResourceType'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import AlertMessage from 'App/Models/AlertMessage'
+import ResourceTypesService from 'App/Services/ResouceTypesService'
 
 export default class ResourceTypesController {
-  public async index({ view }: HttpContextContract) {
+  private service
+
+  constructor() {
+    this.service = new ResourceTypesService()
+  }
+
+  public async index({ request, view }: HttpContextContract) {
+    const search = request.input('search')
+
     return view.render('pages/resource-types/index', {
       title: 'Resource Types',
       breadcrumb: [{ text: 'Manage' }, { text: 'Resource Types' }],
       icon: 'category',
-      resourceTypes: await ResourceType.all(),
+      search,
+      resourceTypes: await this.service.findByName(search),
     })
   }
 
