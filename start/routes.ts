@@ -33,6 +33,16 @@ Route.group(() => {
 }).prefix('/types')
 
 Route.group(() => {
+  Route.get('/index', 'MeasurementUnitController.index')
+  Route.get('/view/:id', 'MeasurementUnitController.view')
+  Route.get('/edit/:id', 'MeasurementUnitController.edit')
+  Route.get('/create', 'MeasurementUnitController.create')
+  Route.post('/store', 'MeasurementUnitController.store')
+  Route.post('/update/:id', 'MeasurementUnitController.update')
+  Route.post('/delete/:id', 'MeasurementUnitController.delete')
+}).prefix('/unit')
+
+Route.group(() => {
   Route.get('/index', 'ResourceController.index')
   Route.get('/view/:id', 'ResourceController.view')
   Route.get('/edit/:id', 'ResourceController.edit')

@@ -1,0 +1,60 @@
+@layout('layouts/main')
+
+@section('body')
+
+<div class="d-flex justify-content-between mb-3">
+  <form>
+    <div class="input-group input-group-sm">
+      <input 
+        type="search" 
+        class="form-control rounded-pill px-3" 
+        placeholder="Search by unit name" 
+        name="search"
+        value="{{ search ?? ''}}"
+      >
+      <button class="btn rounded-circle" type="submit">
+        @!icon({name: 'search', title: 'Search'}) 
+      </button>
+    </div>
+  </form>
+  <a href="{{ route('MeasurementUnitController.create') }}" class="btn" type="button">
+    @!icon({name: 'add', title: 'Add'}) 
+  </a>
+</div>
+
+
+@if(!units.length)
+  <div class="text-center">
+    <h1 class="display-6 mt-5">Does not match any results!</h1>
+    <img src="{{ asset('assets/images/not-found.png') }}" class="img-fluid mt-5 w-75"/>
+  </div>
+@endif
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+  @each((unit) in units)
+    <div class="col mb-4">
+      <div class="card position-relative bg-light shadow-sm">
+        <span class="position-absolute top-0 end-0 badge rounded-pill bg-light text-dark">
+          {{unit.id}}
+          <span class="visually-hidden">unit number</span>
+        </span>
+        <div class="card-body">
+          <h5 class="card-title">{{unit.name}}</h5>
+          <p class="card-text">
+            
+            {{unit.symbol}}
+  
+            <hr>
+            <small class="text-muted d-block">
+              Created at: {{unit.createdAt.toLocaleString()}}
+            </small>
+          </p>
+          <a href="{{ route('MeasurementUnitController.view', {id: unit.id}) }}" class="text-muted stretched-link">
+            @!icon({name: 'visibility', title: 'View'})
+          </a>
+        </div>
+      </div>
+    </div>
+  @end
+</div>
+@end

@@ -1,0 +1,39 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="d-flex justify-content-end mb-3">
+  <a href="{{ route('MeasurementUnitController.index', {id: unit.id}) }}" class="btn" type="button">
+    @!icon({name: 'arrow_back', title: 'Back'}) 
+  </a>
+</div>
+<form 
+  action="{{ route('MeasurementUnitController.update', {id: unit.id})}}"
+  method="POST"
+>
+  <div class="mb-3">
+    @!form.input({
+      type: 'text', 
+      name: 'name', 
+      value: unit.name,
+      id: 'type-input', 
+      label: 'Name', 
+      error: flashMessages.get('errors.name')?.shift(),
+    })
+  </div>
+  <div class="mb-3">
+    @!form.input({
+      type: 'text', 
+      name: 'symbol', 
+      value: unit.symbol,
+      id: 'type-input', 
+      label: 'Name', 
+      error: flashMessages.get('errors.symbol')?.shift(),
+    })
+  </div>
+  <div class="d-flex justify-content-end gap-4">
+    <button type="submit" class="btn btn-primary px-5"> 
+      Save
+    </button>
+  </div>
+</form>
+@end
